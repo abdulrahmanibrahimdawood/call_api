@@ -8,10 +8,10 @@ class ProductModel extends Equatable {
   final String description;
   final String category;
   final String image;
-  final RatingModel rating;
+  final RatingModel model;
 
   const ProductModel({
-    required this.rating,
+    required this.model,
     required this.id,
     required this.title,
     required this.description,
@@ -19,6 +19,30 @@ class ProductModel extends Equatable {
     required this.image,
     required this.price,
   });
+
+  factory ProductModel.fromMap(Map<String, dynamic> map) {
+    return ProductModel(
+      id: map['id'] as int,
+      title: map['title'] as String,
+      price: map['price'] as num,
+      description: map['description'] as String,
+      category: map['category'] as String,
+      image: map['image'] as String,
+      model: RatingModel.fromMap(map['rating']),
+    );
+  }
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'price': price,
+      'description': description,
+      'category': category,
+      'image': image,
+      'rating': model.toMap(),
+    };
+  }
+
   @override
   List<Object?> get props => [
     id,
@@ -27,6 +51,6 @@ class ProductModel extends Equatable {
     description,
     category,
     image,
-    rating,
+    model,
   ];
 }

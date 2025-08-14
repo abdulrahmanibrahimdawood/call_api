@@ -5,6 +5,15 @@ class RatingModel extends Equatable {
   final int count;
 
   const RatingModel({required this.rate, required this.count});
+
+  Map<String, dynamic> toMap() {
+    return {'rate': rate, 'count': count};
+  }
+
+  factory RatingModel.fromMap(Map<String, dynamic> map) {
+    return RatingModel(rate: map['rate'] as num, count: map['count'] as int);
+  }
+
   @override
   List<Object?> get props => [rate, count];
 }
