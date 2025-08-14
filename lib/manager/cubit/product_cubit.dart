@@ -9,11 +9,11 @@ class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductLoading());
   final ProductRepo productRepo = ProductRepo();
 
-  Future<void> fetchProduct() async {
+  getProductData() async {
     try {
       final products = await productRepo.getProductData();
       emit(ProductLoaded(products));
-    } catch (e) {
+    } on Exception catch (e) {
       emit(ProductError(errorMessage: e.toString()));
     }
   }

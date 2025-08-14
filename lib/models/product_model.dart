@@ -28,9 +28,10 @@ class ProductModel extends Equatable {
       description: map['description'] as String,
       category: map['category'] as String,
       image: map['image'] as String,
-      model: RatingModel.fromMap(map['rating']),
+      model: RatingModel.fromMap(map['rating'] as Map<String, dynamic>),
     );
   }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
